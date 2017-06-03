@@ -1,6 +1,7 @@
 import random
 
 class Player(object):
+	# TODO If Player gets too big, change player to have hitter, fielder and baserunner component classes '''
 	def __init__(self, name, team, pos, stats):
 		''' inits a player from stats where
 			"G" is Games
@@ -54,15 +55,15 @@ class Player(object):
 			stats['HR'] + stats['H3B'] + stats['H2B'] + singles
 
 		self.sample_space = {
-				'Base on balls': base_on_balls/outcomes,
-				'Hit by pitch': stats['HBP']/outcomes,
-				'SO': stats["SO"]/outcomes,
-				'Intentional Walk':  stats["IBB"]/outcomes,
-				'Sac Bunt': stats['SAC']/outcomes,
-				'Sac Fly': stats['SF']/outcomes,
-				'Double Play' : stats['GDP']/outcomes,
-				'Ground Out' : ground_outs/outcomes,
-				'Fly Out': fly_out/outcomes,
+				'Walk: Base on balls': base_on_balls/outcomes,
+				'Walk: Hit by pitch': stats['HBP']/outcomes,
+				'Walk: Intentional Walk':  stats["IBB"]/outcomes,
+				'Out: SO': stats["SO"]/outcomes,
+				'Out: Sac Bunt': stats['SAC']/outcomes,
+				'Out: Sac Fly': stats['SF']/outcomes,
+				'Out: Double Play' : stats['GDP']/outcomes,
+				'Out: Ground Out' : ground_outs/outcomes,
+				'Out: Fly Out': fly_out/outcomes,
 				'Single': singles/outcomes,
 				'Double': stats["H2B"]/outcomes,
 				'Triple': stats["H3B"]/outcomes,
@@ -76,23 +77,21 @@ class Player(object):
 			raise ValueError(message)
 
 	def at_bat(self, bases):
+		''' given the state of the bases, sims an at bat and returns the outcome '''
 		while True:
 			rand_hit = random.random()
 			total = 0
 			invalid_outcome = False
-
+			# TODO Change this so it modifies the sample space rather than run again
 			for outcome, prob in self.sample_space.items():
 				total += prob
 				if rand_hit < total:
-					if outcome == "Intentional Walk" and bases.are_loaded():
+					if outcome == "Walk: Intentional Walk" and bases.are_loaded():
 						invalid_outcome = True
-					elif outcome in ("Double Play", "Sac Bunt") and bases.are_empty():
+					elif outcome in ("Out: Double Play", "Out: Sac Bunt") and bases.are_empty():
 						invalid_outcome = True
-					elif outcome == "Sac Fly" and bases.third is None:
+					elif outcome == "Out: Sac Fly" and bases.third is None:
 						invalid_outcome = True
-					elif outcome == "Sac Fly" and bases.third is None:
-						invalid_outcome = True
-
 					if invalid_outcome:
 						return self.at_bat(bases)
 					else:

@@ -12,11 +12,13 @@ class Game(object):
 		self.away_team = None
 		self.at_bat = "away"
 
-
+	def get_result_type(self, at_bat_result):
+		return at_bat_result.split(":")[0].lower()
 
 	def advance_runners(self, at_bat_result, new_runner):
+		result_type = self.get_result_type(at_bat_result)
 		''' advance the runners '''
-		if at_bat_result in ("Intentional Walk", "Base on balls"):
+		if result_type == "walk":
 			self.score[self.at_bat] += self.bases.forced_advance(new_runner)
 
 		if at_bat_result == "ground_rule_double":
@@ -51,6 +53,7 @@ class Game(object):
 		return self.score["home"] == self.score["away"]
 
 	def sim(self, home_team, away_team):
+
 		self.inning = 1
 		batter_numbers = {"home": 0, "away": 0}
 		teams = {"away": away_team, "home": home_team}
@@ -63,12 +66,13 @@ class Game(object):
 					player = teams[at_bat].batting_order[line_up_num]
 					#print("Now batting: {}".format(player.name))
 					result = player.at_bat(self.bases)
+					result_type = self.get_result_type(result)
 					#print(result)
 					self.advance_runners(result, player)
-					if result in ("SO", "Fly Out", "Ground Out", "Fly Out", "Sac Bunt", "Sac Fly"):
+					if result_type == "out":
 						self.outs += 1
-					if result == "Double Play":
-						self.outs += 2
+					if result == "Out: Double Play":
+						self.outs += 1 # one out has already been added
 					batter_numbers[at_bat] += 1
 				self.reset_field()
 			self.inning += 1

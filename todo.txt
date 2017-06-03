@@ -4,6 +4,11 @@ add pitchers
 add fielding (esp. errors)
 add team stats
 add baserunning stats (steals, caught stealing)
+http://www.baseball-reference.com/leagues/MLB/2017-baserunning-batting.shtml
 add more complex runner advancement (such as 1st to 3rd on a line drive single)
 	runner speed? (are steals, dist of multibase hits an indication of speed? player weight? player pos...catchers, first base, designated are slower)
 adapt for https://www.draftkings.com/fantasy-baseball
+
+get league stats for pitchers
+
+http://www.baseball-reference.com/leagues/MLB/2017-standard-fielding.shtml
