@@ -1,0 +1,191 @@
+
+
+                     Basic Theory of Operation
+
+
+HITTING vs PITCHING - the first step:
+
+A hitter can do one of six things in SBS. He can:
+
+  1) Make an out.
+  2) Get a walk.
+  3) Get a single.
+  4) Get a double.
+  5) Get a triple.
+  6) Get a Home Run.
+
+(He could also get on base on an error but that is really a subset
+of making an out as far as the stats are concerned). SBS calculates
+from the hitter's record the probability of each occurrence.
+Then the pitcher's record is considered which modifies the probabilities.
+This will be demonstrated by working through an example. Consider
+the batter named Joe Hitter:
+
+             AB Hits  2B  3B  HR  BB   K  AVG
+Joe Hitter  482  147  20   4  12  41  71 .305
+
+Compute PA (Plate Appearances) = AB + BB = 523
+  (ignore sacrifice hits and Hit-By-Pitched-Balls which would make PA a
+  little larger)
+Compute HBB (probability of Walk) = BB / PA                      = .0784
+Compute H1 (probability of single) = (Hits - (2B + 3B + HR))/ PA = .2122
+Compute H2 (probability of double) = 2B / PA                     = .0382
+Compute H3 (probability of triple) = 3B / PA                     = .0076
+Compute H4 (probability of HR) = HR / PA                         = .0229
+                                                                 -------
+                                                                   .3593
+
+**(These values of H1 thru H4 may be further adjusted for "normalization".
+See discussion below). What's left is the probability of making an out
+(or possibly getting on on an error): 1.0 - .3593 = .6407
+
+We have determined Joe's probabilities as a whole against all the
+pitchers he faced that particular season. But now we have to calculate
+probabilities given a particular pitcher. Consider a player named
+Jack Pitcher:
+
+                IP Hits   HR  BB   K
+Jack Pitcher   200  210   15  50  80
+
+If a pitcher threw 200 innings we know he got approximately 600
+batters out. The ones he did not get out got hits or walks or reached
+on errors.
+
+Compute BF (batters faced) = (IP x 3) + Hits + BB
+<given>
+
+A pitcher will face a few less batters than this due to double plays
+and runners getting thrown out on the bases. On the other hand he
+sometimes faces extra hitters because of defensive errors. These two
+factors just about cancel each other out so we can leave the BF
+equation alone for purposes of explanation.
+                       
+We now need to compute the probabilities for the pitcher for the same
+events that we just calculated for the batter.
+
+Compute BF (batters faced) = (IP x 3) + Hits + BB = 860
+
+Compute P4 (probability of HR)     =  HR / BF                   = .0174
+Compute P3 (probability of triple) =  Hits x .024 / BF          = .0059
+Compute P2 (probability of double) =  Hits x .174 / BF          = .0425
+Compute P1 (probability of single) =  (Hits / BF)- P4 - P3 - P2 = .1784
+Compute PBB (probability of Walk)  =  BB / BF                   = .0581
+
+The data usually just gives us the total hits and HR's a pitcher allowed.
+However, we can use the multipliers .174 and .024 to estimate doubles
+and triples from the total number of hits. These multipliers are not
+constants but we figure them for each year/league from data in the
+BASEBALL.CFG file.
+
+Comparing the percentages we obtained from the hitter with the pitcher
+we have come up with the following:
+
+Event       Hitter       Pitcher
+------      ------       -------
+walk         7.72%         5.81%
+single      20.90%        17.84%
+double       3.77%         4.25%
+triple       0.75%         0.59%
+home run     2.26%         1.74%
+out         64.60%        70.10%
+
+At first glance it might seem that all we need to do now is average
+the hitters and pitchers events like this:
+
+single = (20.9% + 17.84%) / 2 = 19.37%
+etc. for the rest of the events
+
+This method is unacceptable, however, because it over-penalizes
+the outstanding players while boosting the poorer players. That is,
+it tends to lump everyone together too much. In our example above we
+have a good hitter, (.305 vs the league) against what we're calling
+an average pitcher. Certainly we could not expect his single% to DROP
+to 19.21% from 20.90%! After all if this is an average pitcher we would
+expect our batter to do at least as well against him as he did against
+the rest of the league!
+
+The solution is to use "league averages" for the events and to compare
+our pitcher's performance against the league averages. For example,
+we can pick up a baseball statistics magazine containing the statistics
+from the preceding year, and calculate the total "batter's faced"
+for all the pitchers for the entire season. We can also total the number
+of walks, hits, and home runs -- and estimate using our multipliers above
+-- the total number of singles, doubles, and triples. Then we can
+calculate our "league averages".
+
+For example, we find that for an entire season there was 17,500 innings
+pitched, 16,500 hits, 2900 doubles, 410 triples, 1450 Home Runs,
+6,300 walks.
+
+
+Calculate League Averages:
+
+  League Avg. BF = (17,500 x 3) + 16,500 + 6,300 = 75,300
+
+   " " " "    LABB     =         6,300 / 75,300 = .0837
+   " " " "    LA1      =        11,740 / 75,300 = .1559
+   " " " "    LA2      =         2,900 / 75,300 = .0385
+   " " " "    LA3      =           410 / 75,300 = .0054
+   " " " "    LA4      =         1,450 / 75,300 = .0193
+
+Finally we can combine our hitter percentages with our pitcher percentages
+to get meaningful probabilities:
+
+Combined percentages:
+walk%     = HBB x (PBB / LABB)  = .0536  (*)
+single%   = H1  x (P1  / LA1)   = .2428
+double%   = H2  x (P2  / LA2)   = .0465
+triple%   = H3  x (P3  / LA3)   = .0076
+home run% = H4  x (P4  / LA4)   = .0204
+
+Note that if the pitcher's percentages are nearly equal to the League
+Averages, the second factor becomes essentially 1 and the hitter performs
+as expected. But if the pitcher's percentages are substantially better
+(lower) than the League Averages, the second factor will be less than 1
+and the hitter will suffer. The reverse is true if the pitcher's percentages
+are worse (larger) than the League Averages.
+
+(*) OK, this is not quite how I do it now. I now use a slightly more
+accurate (supposedly) but more complicated formula using league averages
+which can be found at:
+
+http://baseballstuff.com/btf/scholars/levitt/articles/batter_pitcher_matchup.htm
+
+This is an article by Dan Levitt who gives credit to Bill James and
+Dallas Adams:
+
+Bill James in his 1983 Baseball Abstract introduces the log5 method for
+addressing this calculation. He credits the formula below for evaluating
+the batter/pitcher match-up to Dallas Adams.
+
+Where PitAvg equals batting average against the pitcher.
+We would do this for each stat calculated above. So for the likelihood of
+a SINGLE, instead of getting .2428 like we did above, we would do this:
+
+                 (.2122 x .1784) / .1559
+----------------------------------------------------------------------- 
+(.2122 x .1784) / .1559  +  ( (1 - .2122) x  (1 - .1784) / (1 - .1559) )
+
+which evaluates to .2405. Not a huge difference from the simplier calculation
+to get .2428.
+	 
+
+
+CROSS-ERA NORMALIZATION:
+
+If normalization is enabled we modify the values of H1, H2, H3 AND H4 and
+the values of P1, P2, P3 and P4 before entering them into the log5 formula
+above. This allows "dead-ball" era batters to be more "offensive" when
+facing modern era pitchers. Modern era batters will have more trouble
+hitting the "dead-ball" era pitchers.
+
+By default, SBS normalizes to the home team's year and league. So the
+visiting team's batters are adjusted as to how their stats might stack up
+in the home team's era. Likewise the visiting team's pitchers are adjusted
+as to how their stats would look in the home team's era. The measuring
+stick used for this is called the Linear Weights method. A "linear weight"
+is calculated for the individual batter and pitcher and the league averages.
+See Appendix D in BASEBALL.DOC for more details.
+
+Other adjustments such as park effects, righty-lefty effects and pitcher
+fatigue are also discussed.
