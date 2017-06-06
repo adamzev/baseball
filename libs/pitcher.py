@@ -74,3 +74,4 @@ class Pitcher(object):
 		P2 = self.stats["H"] * league_doubles_percent / self.stats["TBF"]
 		P1 = self.stats["H"] / self.stats["TBF"] -P4 - P3 - P2
 		PBB = self.stats["BB"] / self.stats["TBF"]
+

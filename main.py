@@ -13,7 +13,7 @@ def main():
 	away_scores = []
 	home = Team("phil")
 	away = Team("marlins")
-	for _ in range(1000):
+	for _ in range(1):
 		bb_game = Game()
 		home_score, away_score = bb_game.sim(home, away)
 		home_scores.append(home_score)

@@ -26,7 +26,7 @@ class Game(object):
 			self.score[self.at_bat] += self.bases.forced_advance(None)
 
 		if at_bat_result == "Single":
-			self.score[self.at_bat] += self.bases.advance_runners_keep_spacing(2, new_runner)
+			self.score[self.at_bat] += self.bases.advance_runners_keep_spacing(1, new_runner)
 
 		if at_bat_result == "Double":
 			self.score[self.at_bat] += self.bases.advance_runners_keep_spacing(2, new_runner)
@@ -58,16 +58,17 @@ class Game(object):
 		batter_numbers = {"home": 0, "away": 0}
 		teams = {"away": away_team, "home": home_team}
 		while self.inning <= 9 or self.is_tie():
-			#self.display_inning()
+			self.display_inning()
 			for at_bat in ["away", "home"]:
 				self.at_bat = at_bat
 				while self.outs < 3:
 					line_up_num = batter_numbers[at_bat] % 9
 					player = teams[at_bat].batting_order[line_up_num]
-					#print("Now batting: {}".format(player.name))
+					print(self.bases)
+					print("Now batting: {}".format(player.name))
 					result = player.at_bat(self.bases)
 					result_type = self.get_result_type(result)
-					#print(result)
+					print(result)
 					self.advance_runners(result, player)
 					if result_type == "out":
 						self.outs += 1

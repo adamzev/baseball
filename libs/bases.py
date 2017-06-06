@@ -4,6 +4,14 @@ class Bases(object):
 		self.second = None
 		self.third = None
 
+	def __str__(self):
+		result = ""
+		for base in (self.first, self.second, self.third):
+			if base:
+				result += "X"
+			else:
+				result += "-"
+		return result
 	def are_loaded(self):
 		return self.first and self.second and self.third
 

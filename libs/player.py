@@ -77,6 +77,8 @@ class Player(object):
 			raise ValueError(message)
 
 	def at_bat(self, bases):
+
+		
 		''' given the state of the bases, sims an at bat and returns the outcome '''
 		while True:
 			rand_hit = random.random()

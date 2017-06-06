@@ -1,1 +1,6 @@
 to load env: source initiate baseball
+team fatigue? player fatigue? days without a break?
+methods for combining percent chances: 
+	log5 to adjust stats
+	baysian or avg to combine?
+men on third reduces change of fly out since it increases the chance of sac fly
