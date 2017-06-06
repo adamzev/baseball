@@ -31,16 +31,21 @@ class Player(object):
 	def player_from_stat_lines(cls, stat_line1, stat_line2):
 		''' create a player from a MLB stat line '''
 		# modify this to handle last names with spaces (look for the comma)
-		_, last, first, team, pos, G, AB, R, H, H2B, H3B, HR, RBI, BB, SO, SB, CS, AVG, OBP, SLG, OPS = stat_line1.split()
-
-		_, _, _, _, _, IBB, HBP, SAC, SF, TB, XBH, GDP, GO, AO, GO_AO, NP, PA = stat_line2.split()
+		try:
+			_, last, first, team, pos, G, AB, R, H, H2B, H3B, HR, RBI, BB, SO, SB, CS, AVG, OBP, SLG, OPS = stat_line1.split()
+			_, last2, first2, team2, _, IBB, HBP, SAC, SF, TB, XBH, GDP, GO, AO, GO_AO, NP, PA = stat_line2.split()
+		except ValueError:
+			print(stat_line1)
+			print(stat_line2)
+			raise
 		scope_locals = locals()
 		stats = {i: float(scope_locals[i]) for i in (
 				'G', 'AB', 'R', 'H', 'H2B', 'H3B', 'HR', 'RBI',
 				'BB', 'SO', 'SB', 'CS', 'AVG', 'OBP', 'SLG', 'OPS',
 				'IBB', 'HBP', 'SAC', 'SF', 'TB', 'XBH', 'GDP', 'GO', 'AO', 'GO_AO', 'NP', 'PA'
 		)}
-
+		if last != last2 or first != first2 or team != team2:
+			raise ValueError("Stats not loading correctly {} vs {}".format(stat_line1, stat_line2))
 		return Player(last+" "+first, team, pos, stats)
 
 	def set_sample_space(self):
@@ -74,11 +79,10 @@ class Player(object):
 			raise ValueError("Sample space must total 1 not {}".format(total_prob))
 		message = "{} Outcomes {} should equal plate appearances {}".format(self.name, outcomes, stats['PA'])
 		if outcomes != stats['PA']:
-			raise ValueError(message)
+			#raise ValueError(message)
+			print(message)
 
 	def at_bat(self, bases):
-
-		
 		''' given the state of the bases, sims an at bat and returns the outcome '''
 		while True:
 			rand_hit = random.random()

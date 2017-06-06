@@ -12,19 +12,21 @@ class Team(object):
 		self.name = name
 		self.load_players_from_files(name)
 		self.batting_order = []
-		self.set_starting_line_up()
-		
 
-	def load_players_from_files(self, prefix):
-		file_name = "data/"+prefix+ "_stat_lines.txt"
-		file_name_2 = "data/" + prefix+ "_stat_lines2.txt"
+
+	def load_players_from_files(self, team_initials):
+		''' loads players from files
+			"team_initials" is the two or three letter abrev. for the team, "all" for all
+		'''
+		file_name = "data/all_bat_1.txt"
+		file_name_2 = "data/all_bat_2.txt"
 		with open(file_name, 'r') as stat_lines, open(file_name_2) as stat_lines_2:
 			for part_a, part_b in zip(stat_lines, stat_lines_2):
 				part_a = self.clean_str(part_a)
 				part_b = self.clean_str(part_b)
 
 				player = Player.player_from_stat_lines(part_a, part_b)
-				if player.stats["PA"] > 0:
+				if player.stats["PA"] > 0 and (player.team == team_initials or team_initials == "all"):
 					self.players.append(player)
 					player.set_sample_space()
 

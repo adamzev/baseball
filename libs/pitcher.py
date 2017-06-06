@@ -45,18 +45,21 @@ class Pitcher(object):
 	def pitcher_from_stat_lines(cls, stat_line1, stat_line2):
 		''' create a player from a MLB stat line '''
 		# modify this to handle last names with spaces (look for the comma)
-		_, last, first, team, pos, G, AB, R, H, H2B, H3B, HR, RBI, BB, SO, SB, CS, AVG, OBP, SLG, OPS = stat_line1.split()
+		_, last, first, team, W, L, ERA, G, GS, SV, SVO, IP, H, R, ER, HR, BB, SO, AVG, WHIP = stat_line1.split()
 
-		_, _, _, _, _, IBB, HBP, SAC, SF, TB, XBH, GDP, GO, AO, GO_AO, NP, PA = stat_line2.split()
+		_, last2, first2, team2, CG, SHO, HB, IBB, GF, HLD, GIDP, GO, AO, WP, BK, SB, CS, PK, TBF, NP = stat_line2.split()
+
+		if last != last2 or first != first2 or team != team2:
+			raise ValueError("Stats not loading correctly {} vs {}".format(stat_line1, stat_line2))
 		scope_locals = locals()
 		stats = {i: float(scope_locals[i]) for i in (
-				'G', 'AB', 'R', 'H', 'H2B', 'H3B', 'HR', 'RBI',
-				'BB', 'SO', 'SB', 'CS', 'AVG', 'OBP', 'SLG', 'OPS',
-				'IBB', 'HBP', 'SAC', 'SF', 'TB', 'XBH', 'GDP', 'GO', 'AO', 'GO_AO', 'NP', 'PA'
+				'W', 'L', 'ERA', 'G', 'GS', 'SV', 'SVO', 'IP',
+				'H', 'R', 'ER', 'HR', 'BB', 'SO', 'AVG', 'WHIP',
+				'CG', 'HB', 'IBB', 'GF', 'HLD', 'GIDP', 'GO', 'AO', 'WP', 'BK',
+				'SB', 'CS', 'PK', 'TBF', 'NP'
 		)}
 
 		return Pitcher(last+" "+first, team, stats)
-
 
 	def set_sample_space(self, league_triples_percent=0.024, league_doubles_percent=0.174):
 		''' Calculates the probability a batter will get each outcome against this pitcher. 
@@ -69,9 +72,32 @@ class Pitcher(object):
 		'''
 
 		# probability of HR, triple, double, single and walk:
-		P4 = self.stats["HR"] / self.stats["TBF"]
-		P3 = self.stats["H"] * league_triples_percent / self.stats["TBF"]
-		P2 = self.stats["H"] * league_doubles_percent / self.stats["TBF"]
-		P1 = self.stats["H"] / self.stats["TBF"] -P4 - P3 - P2
-		PBB = self.stats["BB"] / self.stats["TBF"]
 
+		H3B = self.stats["H"] * league_triples_percent
+		H2B = self.stats["H"] * league_doubles_percent
+		H1B = self.stats["H"]  - self.stats["HR"] - H3B - H2B
+
+		stats = self.stats
+		sac_bunt = stats['GO'] * leagues_sac_bunt_perc
+		ground_outs = stats['GO'] - stats['GIDP'] * 2 - sac_bunt
+		sac_fly = league_sac_perc * stats['AO']
+		fly_out = stats['AO'] - sac_fly
+		base_on_balls = stats['BB'] - stats['IBB']
+		outcomes = self.stats["TBF"]
+
+
+		self.sample_space = {
+				'Walk: Base on balls': base_on_balls/outcomes,
+				'Walk: Hit by pitch': stats['HB']/outcomes,
+				'Walk: Intentional Walk':  stats["IBB"]/outcomes,
+				'Out: SO': stats["SO"]/outcomes,
+				'Out: Sac Bunt': sac_bunt/outcomes,
+				'Out: Sac Fly': sac_fly/outcomes,
+				'Out: Double Play' : stats['GIDP']/outcomes,
+				'Out: Ground Out' : ground_outs/outcomes,
+				'Out: Fly Out': fly_out/outcomes,
+				'Single': H1B/outcomes,
+				'Double':H2B/outcomes,
+				'Triple': H3B/outcomes,
+				'HR': stats["HR"]/outcomes
+			}
