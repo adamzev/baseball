@@ -1,5 +1,8 @@
 import random
-from libs.bases import Bases
+import sys
+
+sys.path.append('/home/tutordelphia/www/')
+from baseball.libs.bases import Bases
 
 class Game(object):
 	def __init__(self):

@@ -1,6 +1,6 @@
 class Pitcher(object):
 	# TODO If Player gets too big, change player to have hitter, fielder and baserunner component classes '''
-	def __init__(self, name, team, pos, stats):
+	def __init__(self, name, team, stats):
 		''' inits pitcher from stats where
 			"ERA" is Earned run average. The average number of earned 
 			runs allowed multiplied by 9 and divided by innings pitched 
@@ -39,7 +39,6 @@ class Pitcher(object):
 		self.stats = stats
 		self.name = name
 		self.team = team
-		self.pos = pos
 
 	@classmethod 
 	def pitcher_from_stat_lines(cls, stat_line1, stat_line2):

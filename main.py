@@ -11,8 +11,11 @@ def main():
 	home_wins = 0
 	away_wins = 0
 	away_scores = []
-	home = Team("phil")
-	away = Team("marlins")
+	home = Team("PHI") # Phillies
+	away = Team("MIA") # Marlins
+	for each_team in [home, away]:
+		each_team.set_sample_space()
+		each_team.set_starting_line_up()
 	for _ in range(1):
 		bb_game = Game()
 		home_score, away_score = bb_game.sim(home, away)

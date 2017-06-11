@@ -1,0 +1,149 @@
+GAME FORMATS: STANDARD AND ARCADE
+See STANDARD sections for information on “Standard” MLB rosters and scoring and ARCADE sections for information on “Arcade Mode” rosters and scoring
+
+CONTEST RULES
+In each contest, participants will create a lineup by selecting players listed in the Player Pool. Each player listed has an assigned salary and a valid lineup must not exceed the salary cap of $50,000.
+Contest results will be determined by the total points accumulated by each individual lineup entry (scoring rules summarized below).
+The Player Pool will consist of all MLB players expected to be on the active roster for any team scheduled to play in the contest Draft Group. Occasionally a player may be missing from the Player Pool due to trades or other unforeseen circumstances.
+In most circumstances, once the Player Pool is established for a Draft Group, including positions and salaries, the Player Pool will not be adjusted. In the rare event that there is a mistake within the Player Pool that would significantly impact game quality, DraftKings reserves the right to correct the mistake after contests for that Draft Group have become available. This may result in valid lineups becoming invalid. This would most likely occur shortly after the Player Pool becomes available, far in advance of the contest start time, and participants who have entered contests for the Draft Group prior to the adjustment will be notified via email.
+A “Draft Group” is a set of games used for contests; each contest is tied to one Draft Group. Contests tied to the same Draft Group can be created at different times. Therefore, game policies are based on the timing of a Draft Group being made available, not each individual contest.
+Participation in each contest must be made only as specified in the Terms of Use. Failure to comply with these Terms of Use will result in disqualification and, if applicable, prize forfeiture. Terms of Use
+ROSTER REQUIREMENTS
+STANDARD
+Standard MLB rosters are as follows:
+
+Rosters will consist of 10 players and must include players scheduled to play in at least 2 different MLB games.
+Rosters must have no more than 5 hitters from any one team.
+The 10 roster positions are: P, P, C, 1B, 2B, 3B, SS, OF, OF, OF
+ARCADE
+Arcade MLB rosters are as follows:
+
+Rosters will consist of 1 Pitcher and 5 Hitters (no position requirements) and must include players scheduled to play in at least 2 different MLB games.
+Rosters must have no more than 2 hitters from any one team.
+SCORING RULES
+STANDARD
+Standard MLB scoring is as follows:
+
+Hitters will accumulate points as follows:
+Single = +3 PTs
+Double = +5 PTs
+Triple = +8 PTs
+Home Run = +10 PTs
+Run Batted In = +2 PTs
+Run = +2 PTs
+Base on Balls = +2 PTs
+Hit By Pitch = +2 PTs
+Stolen Base = +5 PTs
+Pitchers will accumulate points as follows:
+Inning Pitched = +2.25 PTs
+Strikeout = +2 PTs
+Win = +4 PTs
+Earned Run Allowed = -2 PTs
+Hit Against = -0.6 PTs
+Base on Balls Against = -0.6 PTs
+Hit Batsman = -0.6 PTs
+Complete Game = +2.5 PTs
+Complete Game Shutout = +2.5 PTs
+No-hitter = +5 PTs
+*NOTE: Hitting statistics for Pitchers will not be counted, and Pitching statistics for Hitters will not be counted.
+ARCADE
+Arcade Mode scoring is as follows:
+
+Hitters will accumulate points as follows:
+Plate Appearance = +1 PT
+Hit = +5 PTs
+Run = +6.75 PTs
+Run Batted In = +6.75 PTs
+Stolen Base = +12.5 PTs
+Base on Balls = +3.2 PTs
+Hit by Pitch = +3.2 PTs
+Sacrifice Fly = +3.2 PTs
+Bonuses
+Double = +2 PTs
+Triple = +4 PTs
+Home Run = +15 PTs
+Grand Slam = +10 PTs
+Home Run/Stolen Base Combo = +10 PTs (Max 1 per player)
+1st Hit = +5 PTs (Max 1 per player)
+Pitchers will accumulate points as follows:
+Inning Pitched = +4.2 PTs
+Strikeout = +4.5 PTs
+Win = +9 PTs
+Earned Run Allowed = -4.5 PTs
+Hit Against = -1.2 PTs
+Base on Balls Against = -1.2 PTs
+Hit Batsman = -1.2 PTs
+Complete Game = +5 PTs
+Complete Game Shutout = +5 PTs
+No-hitter = +10 PTs
+Scoring Notes:
+Hitting statistics for Pitchers will not be counted, and Pitching statistics for Hitters will not be counted.
+The 1st Hit bonus is awarded to any Hitter once he records his first hit of the game.
+The Home Run/Stolen Base Combo bonus is awarded when a Hitter records a Home Run and a Stolen Base in the same game.
+POSITION ELIGIBILITY
+Player positions are determined at the sole discretion of DraftKings. In general, DraftKings uses the guidelines below to establish player positions.
+
+Players will be eligible at positions in which they started at least 15% of their games started within the season.
+
+If a player has started at more than two positions in 15% or more of their games started then that player will be eligible at the two positions in which they have started the most games within the season.
+
+A player’s position eligibility will be determined based upon the previous season’s data up until that player has started at least 8 games within the current season. At that point, data from the current season will be used for determining position eligibility.
+
+Any game started at the DH position will not count as a game started for the purposes of determining position eligibility. For example, if a player has started 20 games as a DH, 7 games at 1B and 3 games at OF then that player will be eligible at 1B and OF (1B/OF).
+
+Position eligibility is determined based on the above guidelines during the salary and player pool creation process. This process is typically performed one day before the contest start date, but can be performed earlier on occasion.
+
+TRADED PLAYER POLICY
+When a player is traded (changes teams) after contests for a given Draft Group have become available, traded players will be eligible to accrue fantasy points for their new team when BOTH teams (the player’s old and new teams) are in the Draft Group. Any lineup entries that break roster requirement rules because of a trade will be cancelled and refunded. Where possible, DraftKings will notify these users via email and/or other notification features on site.
+
+When there is a trade (a changing of teams) involving a player in which the team the player has been traded to (their new team) is NOT in a Draft Group, the player will remain on his original team (the old team) and will be ineligible to accrue fantasy points.
+
+Where a player is traded to a team in a Draft Group which their old team was not a part of, the player will NOT be added to the player pool.
+
+Where possible, DraftKings will add warnings to Draft Screens once it is known that a player has been traded and therefore eligible or ineligible to register points based on the positioning of their new and old teams in various Draft Groups. Where possible, users that have traded players that are ineligible to accrue fantasy points in their lineup(s) may be notified via email and/or other notification features on the site.
+
+CANCELED, POSTPONED AND RESCHEDULED GAMES
+In the event that a game is canceled, postponed, or a game is rescheduled to a time outside of the original Scoring Period, the game will be disabled from the Draft Group and players listed to play in that game will not be eligible to accrue points.
+
+The Scoring Period for MLB is defined as the timeframe between the scheduled start of the first game within the Draft Group and 11:59pm ET on the date of the start time of the last scheduled game within the Draft Group.
+
+DraftKings may choose to adjust the Scoring Period for a Draft Group at their sole discretion to accommodate schedule changes at any time before 12:00am ET on the date the Draft Group is scheduled to start and/or if the adjustment would move the Draft Group start time by 15 minutes or less.
+
+Any games that are disabled will be indicated as such on Draft Screens. Emails and other notifications may also be used to notify users of disabled games.
+
+If canceled or rescheduled games result in a Draft Group including only one active game and this is known before the contest start time then all contests for that Draft Group will be canceled and refunded.
+
+If a Draft Group includes only one active game but this was not known until after the contest start time then contests for this Draft Group will not be canceled.
+
+Games are “known” to be canceled or postponed once their status is updated as such by DraftKings’ MLB stats-provider, STATS inc.
+
+Example: If a Draft Group includes two games at 8pm ET and 10:30pm ET respectively, and the 10:30pm ET game is officially postponed at 6pm ET then all contests for that Draft Group are canceled and refunded. If the 10:30pm ET game was not officially postponed until after 8pm ET then contests for that Draft Group are not canceled and are played out using only the one active game.
+
+If canceled or rescheduled games result in a Draft Group including zero active games, all contests for that Draft Group will be canceled and refunded.
+
+SUSPENDED OR SHORTENED GAMES
+DraftKings uses official MLB statistics and only includes statistics from games MLB deems to be official. If the MLB declares a game "suspended" then the statistics generated before the game is suspended will count in Draft Groups containing said game. Any statistics generated on a later date when the game resumes will not be included.
+
+CONTEST ENTRY
+The Entry-Fee and Prize Pool for a contest will not change once the contest is created. Therefore, each contest has a maximum amount of total entries accepted. Contests that have not reached capacity will be available for entry up until the contest start time.
+
+Guaranteed contests will run (with prizes unchanged) even if they do not reach capacity before the contest start time. Non-guaranteed contests that do not reach capacity by contest start time may be merged with other similar unfilled contests or may be canceled and refunded.
+
+LINEUP EDITS
+Lineups may be edited at any time leading up to games. Each individual player will become “locked” at the scheduled start time of their team’s game. A locked player cannot be added or removed from a roster spot. Locked roster spots for all entries are displayed in contest GameCenters.
+
+If the scheduled start time for a game changes after contests for a Draft Group containing that game become available, DraftKings will take measures to ensure the change is reflected on Draft Screens and for lineup editing purposes. In the rare case that a game starts before the scheduled start time, all players within that game will become locked as soon as our feed reflects that the game has begun. Additionally, any swaps that were made after the real-life start time of the game will result in those lineups being disqualified and refunded.
+
+SCORING AND PAYOUTS
+Live scoring updates are strictly for the enjoyment of DraftKings customers. DraftKings’ official scoring validation process begins once all games within the contest are final. This process ensures that DraftKings scoring matches official MLB scoring when contest results are finalized and paid out.
+
+Once contests are finalized, a contest status will update to "Completed", and that contest will move from the "Live Games" section to the "Completed Games" section on the My Contests page.
+
+On occasion, MLB official scorers may issue a stat-correction after games have ended and the official scoring validation process has completed. These corrections are rare, but can occur days after a game is played. Therefore, any changes to official scoring that occur after contests have been finalized will not impact those finalized contests. Conversely, if a correction needs to be made after contests are finalized due to a bug with the data feed or the finalization process, while extremely rare, the finalization process (including payment) may be reversed and redone correctly.
+
+Note: The official scoring validation process is solely to ensure that DraftKings contest results are determined based on official MLB scoring. Delays during this process may occur as a result of data collection or other technical difficulties. DraftKings will not attempt to make judgements on scoring rulings.
+
+PLAYER SALARIES
+DraftKings’ player salaries are intended to provide an interesting, challenging, skill-based game resulting in a top quality experience for DraftKings customers. Player salaries are determined based on historical statistics and aspects of a player’s upcoming matchup may be factored into their salary.
+
+Please note that player salaries listed are a function of the salary cap fantasy sports contest format and are not intended, and should not be relied upon, as any indication of real-life salary valuations of the individual players.
