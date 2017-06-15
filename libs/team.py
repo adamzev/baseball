@@ -4,6 +4,7 @@ sys.path.append('/home/tutordelphia/www/')
 from baseball.libs.player import Player
 from baseball.libs.pitcher import Pitcher
 from rocket.libs.query import Query as q
+import rocket.libs.fileManager as fileMan
 
 import rocket.libs.fileManager as fileMan
 class Team(object):
@@ -11,42 +12,54 @@ class Team(object):
 		self.players = []
 		self.batting_order = []
 		self.pitchers = []
+		self.starting_pitcher = None
 		self.name = name
 		self.load_players_from_files(name)
-		
 
-	def set_sample_space(self):
+
+	def set_starting_pitcher(self):
+		for player in self.batting_order:
+			if player.pos == "P":
+				self.starting_pitcher = self.find_pitcher(player.stats['player_id'])
+				break
+		else:
+			raise ValueError("Starting pitcher not found")
+
+
+	def find_pitcher(self, player_id):
 		for pitcher in self.pitchers:
-			pitcher.set_sample_space()
+			if pitcher.stats['player_id'] == player_id:
+				return pitcher
+
+	def set_sample_space(self, league):
+		for pitcher in self.pitchers:
+			pitcher.set_sample_space(league)
 		for batter in self.players:
 			batter.set_sample_space()
 
 	def load_batters(self, team_initials):
-		file_name = "data/all_bat_1.txt"
-		file_name_2 = "data/all_bat_2.txt"
-		with open(file_name, 'r') as stat_lines, open(file_name_2) as stat_lines_2:
-			for part_a, part_b in zip(stat_lines, stat_lines_2):
-				part_a = self.clean_str(part_a)
-				part_b = self.clean_str(part_b)
+		file_name = "data/mlb_batter_data.json"
 
-				player = Player.player_from_stat_lines(part_a, part_b)
-				if player.stats["PA"] > 0 and (player.team == team_initials or team_initials == "all"):
-					self.players.append(player)
+		json_data = fileMan.load_json(file_name)
+
+		rows = json_data["stats_sortable_player"]["queryResults"]["row"]
+		for row in rows:
+			player = Player.player_from_json(row)
+			if player.stats["tpa"] > 0 and (player.team == team_initials or team_initials == "all"):
+				self.players.append(player)
 
 	def load_pitchers(self, team_initials):
 		''' loads pitchers from files
 			"team_initials" is the two or three letter abrev. for the team, "all" for all
 		'''
-		pitchers = "data/phil_players_pitch_stat.txt"
-		pitchers_2 = "data/phil_players_pitch_stats_2.txt"
-		with open(pitchers, 'r') as stat_lines, open(pitchers_2) as stat_lines_2:
-			for part_a, part_b in zip(stat_lines, stat_lines_2):
-				part_a = self.clean_str(part_a)
-				part_b = self.clean_str(part_b)
+		file_name = "data/mlb_pitcher_data.json"
 
-				pitcher = Pitcher.pitcher_from_stat_lines(part_a, part_b)
-				if pitcher.team == team_initials or team_initials == "all":
-					self.pitchers.append(pitcher)
+		json_data = fileMan.load_json(file_name)
+
+		rows = json_data["stats_sortable_player"]["queryResults"]["row"]
+		for row in rows:
+			pitcher = Pitcher.player_from_json(row)
+			self.pitchers.append(pitcher)
 
 	def load_players_from_files(self, team_initials):
 		''' loads players from files
@@ -71,13 +84,13 @@ class Team(object):
 			lineup = fileMan.load_json(file_name+".json")
 			if len(lineup) != 9:
 				raise ValueError("Starting lineup must be 9 players")
-			self.batting_order = [player for player in self.players if player.name in lineup]
+			self.batting_order = [player for player in self.players if player.player_name in lineup]
 		except OSError:
 			q.change_input_func(input)
 			lineup = []
 			while len(lineup) < 9:
 				lineup.append(q.query_from_list("player", "Select the starting line-up in order: ", [player.name for player in self.players], False))
-			self.batting_order = [player for player in self.players if player.name in lineup]
-			fileMan.save_json([player.name for player in self.batting_order], file_name)
+			self.batting_order = [player for player in self.players if player.player_name in lineup]
+			fileMan.save_json([player.player_name for player in self.batting_order], file_name)
 
 

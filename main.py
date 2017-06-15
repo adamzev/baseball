@@ -2,8 +2,9 @@ import sys
 
 sys.path.append('/home/tutordelphia/www/')
 
-from libs.game import Game
-from libs.team import Team
+from baseball.libs.game import Game
+from baseball.libs.team import Team
+from baseball.libs.league import League
 import rocket.generalEquations as ge
 
 def main():
@@ -11,14 +12,17 @@ def main():
 	home_wins = 0
 	away_wins = 0
 	away_scores = []
-	home = Team("PHI") # Phillies
-	away = Team("MIA") # Marlins
+	league = League()
+	home = Team("phi") # Phillies
+	away = Team("mia") # Marlins
+
 	for each_team in [home, away]:
-		each_team.set_sample_space()
+		each_team.set_sample_space(league)
 		each_team.set_starting_line_up()
-	for _ in range(1):
+		each_team.set_starting_pitcher()
+	for _ in range(100):
 		bb_game = Game()
-		home_score, away_score = bb_game.sim(home, away)
+		home_score, away_score = bb_game.sim(home, away, league, True)
 		home_scores.append(home_score)
 		away_scores.append(away_score)
 
