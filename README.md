@@ -1,2 +1,2 @@
-# baseball
+# Baseball
 Baseball Sim
