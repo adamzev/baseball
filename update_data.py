@@ -1,8 +1,7 @@
 import sys
 import requests
 
-sys.path.append('/home/tutordelphia/www/')
-import rocket.libs.fileManager as fileMan
+import libs.fileManager as fileMan
 
 def create_url(sort_column, sort_dir, season):
 	''' Creates a MLB.com API url

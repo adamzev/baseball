@@ -1,8 +1,6 @@
 import sys
 
-sys.path.append('/home/tutordelphia/www/')
-
-from baseball.libs.team import Team
+from libs.team import Team
 
 class League(object):
 	def __init__(self):
