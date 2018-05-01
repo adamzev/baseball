@@ -1,7 +1,5 @@
-import random
-import sys
-
 import libs.func as func
+
 
 class Player(object):
     # TODO If Player gets too big, change player to have hitter, fielder and baserunner component classes '''
@@ -68,7 +66,6 @@ class Player(object):
                 stats[key] = value
         return Player(first, last, team, pos, stats)
 
-
     def set_sample_space(self):
         ''' find the total outcomes and probability of each '''
         stats = self.stats
@@ -82,25 +79,24 @@ class Player(object):
             stats['hr'] + stats['t'] + stats['d'] + singles
 
         self.sample_space = {
-                'Walk: Base on balls': base_on_balls/outcomes,
-                'Walk: Hit by pitch': stats['hbp']/outcomes,
-                'Walk: Intentional Walk':  stats["ibb"]/outcomes,
-                'Out: SO': stats["so"]/outcomes,
-                'Out: Sac Bunt': stats['sac']/outcomes,
-                'Out: Sac Fly': stats['sf']/outcomes,
-                'Out: Double Play' : stats['gidp']/outcomes,
-                'Out: Ground Out' : ground_outs/outcomes,
-                'Out: Fly Out': fly_out/outcomes,
-                'Single': singles/outcomes,
-                'Double': stats["d"]/outcomes,
-                'Triple': stats["t"]/outcomes,
-                'HR': stats["hr"]/outcomes
-            }
+            'Walk: Base on balls': base_on_balls / outcomes,
+            'Walk: Hit by pitch': stats['hbp'] / outcomes,
+            'Walk: Intentional Walk': stats["ibb"] / outcomes,
+            'Out: SO': stats["so"] / outcomes,
+            'Out: Sac Bunt': stats['sac'] / outcomes,
+            'Out: Sac Fly': stats['sf'] / outcomes,
+            'Out: Double Play': stats['gidp'] / outcomes,
+            'Out: Ground Out': ground_outs / outcomes,
+            'Out: Fly Out': fly_out / outcomes,
+            'Single': singles / outcomes,
+            'Double': stats["d"] / outcomes,
+            'Triple': stats["t"] / outcomes,
+            'HR': stats["hr"] / outcomes
+        }
         total_prob = sum(self.sample_space.values())
         if round(total_prob, 3) != 1.0:
             raise ValueError("Sample space must total 1 not {}".format(total_prob))
         message = "{} Outcomes {} should equal plate appearances {}".format(self.player_name, outcomes, stats['tpa'])
         if outcomes != stats['tpa']:
-            #raise ValueError(message)
+            # raise ValueError(message)
             print(message)
-

@@ -1,9 +1,8 @@
-import sys
-
 from libs.game import Game
 from libs.team import Team
 from libs.league import League
 import libs.generalEquations as ge
+
 
 def main():
     home_scores = []
@@ -11,8 +10,8 @@ def main():
     away_wins = 0
     away_scores = []
     league = League()
-    home = Team("phi") # Phillies
-    away = Team("mia") # Marlins
+    home = Team("phi")  # Phillies
+    away = Team("mia")  # Marlins
 
     for each_team in [home, away]:
         each_team.set_sample_space(league)
@@ -33,7 +32,6 @@ def main():
 
     print("{}: {} AVG Runs, {} wins ".format(home.name, ge.average_list(home_scores), home_wins))
     print("{}: {} AVG Runs, {} wins ".format(away.name, ge.average_list(away_scores), away_wins))
-
 
 
 if __name__ == "__main__":

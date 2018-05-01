@@ -1,6 +1,5 @@
-import sys
-
 import libs.func as func
+
 
 class Pitcher(object):
     def __init__(self, first, last, team, stats):
@@ -65,16 +64,15 @@ class Pitcher(object):
                 stats[key] = value
         return Pitcher(first, last, team, stats)
 
-
     @property
     def player_name(self):
         return self.last + ', ' + self.first[0]
 
     def set_sample_space(self, league):
-        ''' Calculates the probability a batter will get each outcome against this pitcher. 
+        ''' Calculates the probability a batter will get each outcome against this pitcher.
             The data usually just gives us the total hits and HR's a pitcher allowed.
             However, we can use the multipliers to estimate doubles
-            and triples from the total number of hits. These multipliers are 
+            and triples from the total number of hits. These multipliers are
             calculated from the data set's (year, league) rate at which these events occur
             league_triples_percent = total_triples / total_hits
             league_double_percent = league_double_percent / total_hits
@@ -84,7 +82,7 @@ class Pitcher(object):
 
         H3B = self.stats["h"] * league.sample_space["Triple"]
         H2B = self.stats["h"] * league.sample_space["Double"]
-        H1B = self.stats["h"]  - self.stats["hr"] - H3B - H2B
+        H1B = self.stats["h"] - self.stats["hr"] - H3B - H2B
 
         stats = self.stats
         sac_bunt = stats['go'] * league.sample_space["Out: Ground Out"]
@@ -94,19 +92,18 @@ class Pitcher(object):
         base_on_balls = stats['bb'] - stats['ibb']
         outcomes = self.stats["tbf"]
 
-
         self.sample_space = {
-                'Walk: Base on balls': base_on_balls/outcomes,
-                'Walk: Hit by pitch': stats['hb']/outcomes,
-                'Walk: Intentional Walk':  stats["ibb"]/outcomes,
-                'Out: SO': stats["so"]/outcomes,
-                'Out: Sac Bunt': sac_bunt/outcomes,
-                'Out: Sac Fly': sac_fly/outcomes,
-                'Out: Double Play' : stats['gidp']/outcomes,
-                'Out: Ground Out' : ground_outs/outcomes,
-                'Out: Fly Out': fly_out/outcomes,
-                'Single': H1B/outcomes,
-                'Double':H2B/outcomes,
-                'Triple': H3B/outcomes,
-                'HR': stats["hr"]/outcomes
-            }
+            'Walk: Base on balls': base_on_balls / outcomes,
+            'Walk: Hit by pitch': stats['hb'] / outcomes,
+            'Walk: Intentional Walk': stats["ibb"] / outcomes,
+            'Out: SO': stats["so"] / outcomes,
+            'Out: Sac Bunt': sac_bunt / outcomes,
+            'Out: Sac Fly': sac_fly / outcomes,
+            'Out: Double Play': stats['gidp'] / outcomes,
+            'Out: Ground Out': ground_outs / outcomes,
+            'Out: Fly Out': fly_out / outcomes,
+            'Single': H1B / outcomes,
+            'Double': H2B / outcomes,
+            'Triple': H3B / outcomes,
+            'HR': stats["hr"] / outcomes
+        }
