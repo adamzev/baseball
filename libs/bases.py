@@ -12,6 +12,7 @@ class Bases(object):
             else:
                 result += "-"
         return result
+
     def are_loaded(self):
         return self.first and self.second and self.third
 

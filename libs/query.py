@@ -2,12 +2,14 @@ import sys
 
 from libs import func
 
+
 class Query(object):
     ''' query the user for multiple datatypes in a testable manner '''
     try:
         input_func = raw_input
     except NameError:
         input_func = input
+
     def __init__(self):
         pass
 
@@ -18,7 +20,8 @@ class Query(object):
 
     @classmethod
     def query_unknown_type(cls, question, sample_data):
-        ''' query for a value of unknown type (primarily used to replace a value with another value of the same type) '''
+        ''' query for a value of unknown type (primarily used to replace a value with
+        another value of the same type) '''
         if isinstance(sample_data, float):
             result = cls.query_float(question)
         elif isinstance(sample_data, bool):
@@ -119,16 +122,16 @@ class Query(object):
                     return choice
                 elif min_num is None and choice <= max_num:
                     return choice
-                elif  max_num is None and choice >= min_num:
+                elif max_num is None and choice >= min_num:
                     return choice
                 elif min_num <= choice <= max_num:
                     return choice
             sys.stdout.write("Please respond with a valid number.\n")
 
-
     @classmethod
     def query_min_max(cls, question, min_num=0.0, max_num=1.0):
-        """Ask a question via cls.input_func() where "min", "max", "off" or a number in a range are valid and return their answer.
+        """Ask a question via cls.input_func() where "min", "max", "off" or a number
+        in a range are valid and return their answer.
 
         "question" is a string that is presented to the user.
         "default" is the presumed answer if the user just hits <Enter>.
@@ -150,10 +153,13 @@ class Query(object):
             elif func.is_float(choice) and min_num <= float(choice) <= max_num:
                 return float(choice)
             else:
-                sys.stdout.write("Please respond with 'min', 'max', 'off' or a number between {} and {}. \n".format(min_num, max_num))
+                sys.stdout.write(
+                    "Please respond with 'min', 'max', 'off' or a number between \
+                    {} and {}. \n".format(min_num, max_num))
 
     @classmethod
-    def query_from_list(cls, list_name, intro, options, select_multiple=True, callback=None, min_selections=1):
+    def query_from_list(cls, list_name, intro, options, select_multiple=True,
+            callback=None, min_selections=1):
         ''' Creates a simple text menu that numbers options
             Options are either a dict containting a "name" key or list of strings
             Can be used to select one option or an array of multiple options

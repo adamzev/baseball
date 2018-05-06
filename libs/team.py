@@ -1,9 +1,8 @@
-import sys
-
 from libs.player import Player
 from libs.pitcher import Pitcher
 from libs.query import Query as q
 import libs.fileManager as fileMan
+
 
 class Team(object):
     def __init__(self, name):
@@ -14,7 +13,6 @@ class Team(object):
         self.name = name
         self.load_players_from_files(name)
 
-
     def set_starting_pitcher(self):
         for player in self.batting_order:
             if player.pos == "P":
@@ -22,7 +20,6 @@ class Team(object):
                 break
         else:
             raise ValueError("Starting pitcher not found")
-
 
     def find_pitcher(self, player_id):
         for pitcher in self.pitchers:
@@ -67,7 +64,6 @@ class Team(object):
         self.load_batters(team_initials)
         self.load_pitchers(team_initials)
 
-
     def clean_str(self, dirty):
         ''' sanatize baseball stat files from MLB.com '''
         dirty = dirty.replace('.---', '0.0')
@@ -77,9 +73,9 @@ class Team(object):
         return clean
 
     def set_starting_line_up(self):
-        file_name = "data/"+self.name+"_"+"starting"
+        file_name = "data/" + self.name + "_" + "starting"
         try:
-            lineup = fileMan.load_json(file_name+".json")
+            lineup = fileMan.load_json(file_name + ".json")
             if len(lineup) != 9:
                 raise ValueError("Starting lineup must be 9 players")
             self.batting_order = [player for player in self.players if player.player_name in lineup]
@@ -87,8 +83,8 @@ class Team(object):
             q.change_input_func(input)
             lineup = []
             while len(lineup) < 9:
-                lineup.append(q.query_from_list("player", "Select the starting line-up in order: ", [player.name for player in self.players], False))
+                lineup.append(q.query_from_list(
+                    "player", "Select the starting line-up in order: ",
+                    [player.name for player in self.players], False))
             self.batting_order = [player for player in self.players if player.player_name in lineup]
             fileMan.save_json([player.player_name for player in self.batting_order], file_name)
-
-

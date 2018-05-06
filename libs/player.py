@@ -2,7 +2,8 @@ import libs.func as func
 
 
 class Player(object):
-    # TODO If Player gets too big, change player to have hitter, fielder and baserunner component classes '''
+    # TODO If Player gets too big, change player to have hitter, fielder and baserunner
+    # component classes
     def __init__(self, first, last, team, pos, stats):
         '''
             "team_name" is full pretty team name
@@ -96,7 +97,8 @@ class Player(object):
         total_prob = sum(self.sample_space.values())
         if round(total_prob, 3) != 1.0:
             raise ValueError("Sample space must total 1 not {}".format(total_prob))
-        message = "{} Outcomes {} should equal plate appearances {}".format(self.player_name, outcomes, stats['tpa'])
+        message = "{} Outcomes {} should equal plate appearances {}".format(self.player_name,
+            outcomes, stats['tpa'])
         if outcomes != stats['tpa']:
             # raise ValueError(message)
             print(message)
