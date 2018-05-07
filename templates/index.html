@@ -3,6 +3,27 @@
 	</head>
 	<body>
 		<h1>Baseball Sim</h1>
-		<p>Welcome to Baseball Sim</p>
+		<a href="about">About</a>
+		<p>Welcome to Baseball Sim</p>		
+		<hr>
+		<h3>Game Sim</h3>
+		<form method="POST" action=".">
+			<select name="team1" type="text" placeholder="First Team" required>
+				<option>First Team</option>
+				<option value="phi">Philadelphia</option>
+				<option value="mia">Miami</option>
+			</select>
+			<select name="team2" type="text" placeholder="Second Team" required>
+					<option>Second Team</option>
+					<option value="phi">Philadelphia</option>
+					<option value="mia">Miami</option>
+			</select>
+			<input name="num_games" type="number" placeholder="Number of Games"/>
+			<input type="submit" name="Run Simulation" value="Run Sim"></input>
+		</form>
+		<hr>
+		<h4>Simulation Results</h4>
+		<p>{{ home }} </p>
+		<p>{{ away }}</p>
 	</body>
 </html>
