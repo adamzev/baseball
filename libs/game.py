@@ -1,14 +1,15 @@
 import random
+import sys
+import json
 
 from .bases import Bases
 import libs.baseball_func as b_func
-
 
 class Game(object):
     def __init__(self):
         self.bases = Bases()
         self.inning = 1
-        self.top = True  # false means bottom of the inning
+        self.top = True # false means bottom of the inning
         self.outs = 0
         self.score = {"home": 0, "away": 0}
         self.home_team = None
@@ -48,6 +49,7 @@ class Game(object):
             part = "Bottom"
         print("{} of the {} inning".format(part, self.inning))
 
+
     def reset_field(self):
         self.bases.clear_bases()
         self.outs = 0
@@ -60,7 +62,7 @@ class Game(object):
         sample_space = {}
         for key, value in batter_s.items():
             sample_space[key] = b_func.log5(batter_s[key], pitcher_s[key], league_s[key])
-        # should we need to normalize after applying log5?
+        #should we need to normalize after applying log5?
         sample_space = self.normalize_sample_space(sample_space)
         total_prob = sum(sample_space.values())
 
@@ -73,8 +75,9 @@ class Game(object):
         total_prob = sum(sample_space_raw.values())
         sample_space_norm = {}
         for key, value in sample_space_raw.items():
-            sample_space_norm[key] = value / total_prob
+            sample_space_norm[key] = value/total_prob
         return sample_space_norm
+
 
     def at_bat(self, batter, pitcher, league):
         ''' given the state of the bases, sims an at bat and returns the outcome '''
@@ -102,7 +105,13 @@ class Game(object):
                     else:
                         return outcome
 
-    def sim(self, home_team, away_team, league, verbose=False):
+
+    def sim(self, home_team, away_team, league, verbose = False):
+        game_json = {
+            "home_team":home_team.name, 
+            "away_team":away_team.name,
+            "innings":[],
+            }
         self.inning = 1
         batter_numbers = {"home": 0, "away": 0}
         teams = {"away": away_team, "home": home_team}
@@ -125,9 +134,22 @@ class Game(object):
                     if result_type == "out":
                         self.outs += 1
                     if result == "Out: Double Play":
-                        self.outs += 1  # one out has already been added
+                        self.outs += 1 # one out has already been added
                     batter_numbers[batting_team] += 1
                 self.reset_field()
+            print("self.score")
+            print(self.score)
+            _score = self.score
+            # there is probably a better way to do this
+            # we want to store the temporary value of the class property, not the reference
+            game_json["innings"].append(
+                json.loads(json.dumps({
+                'inning':self.inning,
+                'score':_score}))
+                )
             self.inning += 1
-        # print("Game over:\n Score\n {}".format(self.score))
-        return self.score["home"], self.score["away"]
+
+        #print("Game over:\n Score\n {}".format(self.score))
+        print(game_json)
+        return self.score["home"], self.score["away"], game_json
+

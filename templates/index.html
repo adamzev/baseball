@@ -25,5 +25,38 @@
 		<h4>Simulation Results</h4>
 		<p>{{ home }} </p>
 		<p>{{ away }}</p>
+		{% if game_details %}
+		{% for game in game_details %}
+		<table>
+			<thead>
+			<th>Team</th>
+
+		{% for i in game.innings %}
+
+			<th>{{ i.inning}}</th>
+
+		{% endfor %}
+		</thead>
+		<tbody>
+		<tr>
+			<td>{{ game.home_team }}</td>
+			{% for i in game.innings %}
+				<td>{{ i.score.home }}</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>{{ game.away_team }}</td>
+			{% for i in game.innings %}
+				<td>{{ i.score.away }}</td>
+			{% endfor %}
+		</tr>
+
+		</tbody>
+
+		</table>
+
+		{% endfor %}
+		{% endif %}
+		
 	</body>
 </html>
