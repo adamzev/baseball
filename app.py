@@ -6,7 +6,6 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def hello_world():
     if request.method == "POST":
-        print("post made")
         team1 = request.form.get('team1')
         team2 = request.form.get('team2')
         num_games = int(request.form.get('num_games'))
