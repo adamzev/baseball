@@ -36,6 +36,8 @@
 			<th>{{ i.inning}}</th>
 
 		{% endfor %}
+			<th>R</th>
+			<th>H</th>
 		</thead>
 		<tbody>
 		<tr>
@@ -43,12 +45,16 @@
 			{% for i in game.innings %}
 				<td>{{ i.score.home }}</td>
 			{% endfor %}
+				<td>{{ game.score.home }}</td>
+				<td>{{ game.hits.home }}</td>
 		</tr>
 		<tr>
 			<td>{{ game.away_team }}</td>
 			{% for i in game.innings %}
 				<td>{{ i.score.away }}</td>
 			{% endfor %}
+				<td>{{ game.score.away }}</td>
+				<td>{{ game.hits.away }}</td>
 		</tr>
 
 		</tbody>
