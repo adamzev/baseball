@@ -12,6 +12,18 @@ First, activate your virtual environment
 pip install -r requirements.txt
 ```
 
+## Build React
+
+The React app uses `create-react-app` and is contained in the top-level folder `frontend`. The flask app sets its static directory to the `build` folder contained in `frontend` in order to serve the react app.
+
+```
+cd frontend
+# install node modules
+npm install
+# build the app
+npm run build
+```
+
 ## Run flask
 
 ```
