@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-
+import classes from './Simulation.css';
 import axios from 'axios';
 import SimulationResults from '../containers/SimulationResults';
+import SimulationForm from '../containers/SimulationForm/SimulationForm';
 
 class Simulation extends Component {
 
     state = {
         results: null,
-        team1: "", 
+        num_games: 10,
+        team1: "",
         team2: "",
+        teams: [
+            {code:"phi",team_name:"Philadelphia"},
+            {code:"mia", team_name:"Miami"}
+        ]
     }
 
     handleSubmit = (e) => {
@@ -17,7 +23,7 @@ class Simulation extends Component {
         axios.post('/api/simulation',{
             "team1":this.state.team1,
             "team2":this.state.team2,
-            "num_games":5
+            "num_games":parseInt(this.state.num_games),
         })
             .then( (response) => {
                 console.log(response)
@@ -34,8 +40,15 @@ class Simulation extends Component {
     }
 
     handleTeamTwo = (e) => {
+        console.log(e.target)
         this.setState({
             team2: e.target.value,
+        })
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            num_games: e.target.value,
         })
     }
 
@@ -43,24 +56,17 @@ class Simulation extends Component {
 
         return (
             <div>
-            <form>
-                <p>Team 1: {this.state.team1}</p>
-                <select onChange={this.handleTeamOne}>
-                    <option>Select Team 1</option>
-                    <option value="phi">Philadelphia</option>
-                    <option value="mia">Miama</option>
-                </select>
-                <p>Team 2: {this.state.team2}</p>
-                <select value={this.state.team2} onChange={this.handleTeamTwo}>
-                    <option>Select Team 2</option>
-                    <option value="phi">Philadelphia</option>
-                    <option value="mia">Miama</option>
-                </select>
-                <br /><br />
-                <button onClick={this.handleSubmit}>Run Simulation</button>
-            </form>
-            <h1>Simulation Results</h1>
-            <p>{this.state.results && <SimulationResults data={this.state.results} /> }</p>
+                <SimulationForm
+                    handleSubmit={this.handleSubmit}
+                    handleTeamOne={this.handleTeamOne}
+                    handleTeamTwo={this.handleTeamTwo}
+                    handleChange={this.handleChange}
+                    num_games={this.state.num_games}
+                    team1={this.state.team1}
+                    team2={this.state.team2}
+                    teams={this.state.teams}
+                />
+            {this.state.results && <SimulationResults data={this.state.results} /> }
             </div>
         )
     }

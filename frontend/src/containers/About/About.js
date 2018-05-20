@@ -1,17 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Nav from '../Nav/Nav';
+import Header from '../Header/Header';
 
-import '../../App.css';
+import classes from './About.css';
 
 const About = () => {
     return (
-        <div className="App">
-            <header className="App-header">
-            <h1 style={{ fontSize: "2em"}}>⚾🧢🍿📊</h1>
-            <h1 className="App-title">Baseball Simulator</h1>
-            </header>
+        <div className={classes.About}>
+            <Header>
+                <Nav />
+            </Header>
+
             <h1>About</h1>
-            <Link to="/">Simulator</Link>
+            
             <p>Baseball Sim is a program that simulates baseball game outcomes based on statistical models and official MLB data sources.</p>
         </div>
     )
