@@ -67,6 +67,7 @@ class Simulation extends Component {
                     teams={this.state.teams}
                 />
             {this.state.results && <SimulationResults data={this.state.results} /> }
+
             </div>
         )
     }
