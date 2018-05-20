@@ -48,13 +48,13 @@ class Simulation extends Component {
                 <select onChange={this.handleTeamOne}>
                     <option>Select Team 1</option>
                     <option value="phi">Philadelphia</option>
-                    <option value="mia">Miama</option>
+                    <option value="mia">Miami</option>
                 </select>
                 <p>Team 2: {this.state.team2}</p>
                 <select value={this.state.team2} onChange={this.handleTeamTwo}>
                     <option>Select Team 2</option>
                     <option value="phi">Philadelphia</option>
-                    <option value="mia">Miama</option>
+                    <option value="mia">Miami</option>
                 </select>
                 <br /><br />
                 <button onClick={this.handleSubmit}>Run Simulation</button>
