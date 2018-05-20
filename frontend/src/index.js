@@ -2,12 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import About from './containers/About/About';
+import { BrowserRouter, Route } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
+// import 'semantic-ui-css/semantic.min.css';
 
 const app = (
     <BrowserRouter >
-        <App />
+    <div>
+        <Route path="/about" exact component={About} />
+        <Route path="/" exact component={App} />
+    </div>
     </BrowserRouter>
 
 )

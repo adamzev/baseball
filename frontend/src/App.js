@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
 import Simulation from './components/Simulation';
+import Nav from './containers/Nav/Nav';
+import Header from './containers/Header/Header';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 style={{ fontSize: "2em"}}>⚾🧢🍿📊</h1>
-          <h1 className="App-title">Baseball Simulator</h1>
-        </header>
+      <div>
+        <Header>
+          <Nav />
+        </Header>
         <Simulation />
       </div>
     );

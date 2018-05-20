@@ -10,6 +10,7 @@ const SimulationResults = (props) => {
     })
     return (
         <div>
+        <h1>Simulation Results</h1>
         <p>{props.data.home}</p>
         <p>{props.data.away}</p>
         {results}
