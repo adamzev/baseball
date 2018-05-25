@@ -6,6 +6,13 @@ The project will have a React front-end and a Flask/Python back-end.
 
 ## Install requirements
 
+NodeJS
+In your terminal enter:
+`sudo apt-get install nodejs`
+`sudo apt-get install npm`
+Or visit https://nodejs.org/en/
+Python3
+PyEnv or PipEnv or VirtualEnv (any virtual enviroment manager that works with pip)
 First, activate your virtual environment
 
 ```python
