@@ -8,9 +8,11 @@ The project will have a React front-end and a Flask/Python back-end.
 
 **NodeJS**  
 In your terminal enter:  
-`curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -`
-`sudo apt-get install -y nodejs`
-`sudo apt-get install npm` 
+```
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt-get install npm
+```
 Or visit https://nodejs.org/en/  
 **Python3**  
 **PyEnv or PipEnv or VirtualEnv** (any virtual enviroment manager that works with pip)  
@@ -32,8 +34,9 @@ npm install
 npm run build
 ```
 
-## Run flask
+## Run Flask
 
 ```
+cd ..
 python -m flask run
 ```
