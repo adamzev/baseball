@@ -8,7 +8,8 @@ The project will have a React front-end and a Flask/Python back-end.
 
 **NodeJS**  
 In your terminal enter:  
-`sudo apt-get install nodejs` 
+`curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -`
+`sudo apt-get install -y nodejs`
 `sudo apt-get install npm` 
 Or visit https://nodejs.org/en/  
 **Python3**  
