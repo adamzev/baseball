@@ -1,4 +1,4 @@
-# Baseball
+# Bat-Around Baseball Sim
 
 Baseball Sim is a beginner friendly open-source project which allows you to simulate baseball games. Using real data from the 2017 season, the sim predicts the outcome of each at-bat.  
 
