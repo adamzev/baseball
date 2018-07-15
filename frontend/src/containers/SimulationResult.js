@@ -33,6 +33,34 @@ const SimulationResult = (props) => {
                 </tr>
             </tbody>
         </table>
+        <button>View Details</button>
+        <table style={{margin: "auto"}}>
+            <thead>
+                <th>Inning</th>
+
+            </thead>
+            <tbody>
+                {props.game.innings.map(i => {
+                        return (<tr><td>{i.inning}</td>
+                            <table>
+                                <thead>
+                                <th>Batter</th>
+                <th>Bases</th>
+                <th>Result</th>
+                </thead>
+                                {i.inning_details.map(j=> {
+                                        return (<tr>
+                                            <td>{j.batter}</td>
+                                        <td>{j.result}</td>
+                                        <td>{j.bases}</td></tr>)
+                                    }
+                                )}
+                            </table>
+                            
+                            </tr>)
+                })}
+            </tbody>
+        </table>
         </div>
     )
 }
