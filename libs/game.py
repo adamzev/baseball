@@ -131,6 +131,7 @@ class Game(object):
                 self.batting_team = batting_team
                 self.pitching_team = "home" if batting_team == "away" else "away"
                 runs_scored_in_inning = 0
+                inning_details = []
                 while self.outs < 3:
                     line_up_num = up_to_bat0[batting_team] % 9
                     player = teams[batting_team].batting_order[line_up_num]
@@ -139,7 +140,12 @@ class Game(object):
                     if result in HIT_TYPES:
                         total_hits[batting_team] += 1
                     result_type = self.get_result_type(result)
-
+                    inning_detail = {
+                        "bases": str(self.bases),
+                        "batter": player.player_name,
+                        "result": result
+                    }
+                    inning_details.append(inning_detail)
                     if verbose:
                         print(self.bases)
                         print("Now batting: {}".format(player.player_name))
@@ -158,7 +164,8 @@ class Game(object):
             game_json["innings"].append(
                 copy.deepcopy({
                     'inning': self.inning,
-                    'score': inning_score
+                    'score': inning_score,
+                    'inning_details': inning_details
                 })
             )
             self.inning += 1
